@@ -181,6 +181,7 @@
 <p>同上一节</p>
 </blockquote>
 <h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>定义一个体系结构，将应用程序构建为一组松散耦合的协作服务。该方法对应于Scale Cube的Y轴。每个服务都实现了一组狭义的相关功能，例如，应用程序可能包含订单管理服务，客户管理服务等服务。<br>服务使用HTTP/REST等同步协议或AMQP等异步协议进行通信，可以彼此独立地开发和部署服务。每个服务都有自己的数据库，以便与其他服务分离。使用Saga模式维护服务之间的数据一致性。</p>
+<p><img src="/2018/11/22/Microservice-Architecture/microservice/Microservice_Architecture.png" alt="微服务架构"></p>
 <h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><h4 id="虚拟电商应用"><a href="#虚拟电商应用" class="headerlink" title="虚拟电商应用"></a>虚拟电商应用</h4><p>假设正在构建一个电子商务应用程序，该应用程序接收来自客户的订单，验证库存和可用信用，并运送它们。该应用程序包含几个组件，包括用户界面，检查信用积分，管理库存和装运订单的一些后端服务。</p>
 <h4 id="Show-me-the-code"><a href="#Show-me-the-code" class="headerlink" title="Show me the code"></a>Show me the code</h4><p>请访问<a href="http://eventuate.io/exampleapps.html" target="_blank" rel="noopener">example applications developed by Chris Richardson</a>。这些示例在github.com上，展示了微服务架构的各个方面。</p>
 <h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><h4 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h4><p>该解决方案有很多优点：     </p>
@@ -229,6 +230,7 @@
 <li>API组合和命令查询责任隔离（CQRS）模式。</li>
 </ul>
 <h3 id="相关模式"><a href="#相关模式" class="headerlink" title="相关模式"></a>相关模式</h3><p>有许多与微服务模式相关的模式。单体架构是微服务架构的一种选择。其他模式解决了在应用微服务架构时将遇到的问题。</p>
+<p><img src="/2018/11/22/Microservice-Architecture/microservice/PatternsRelatedToMicroservices.jpg" alt="相关模式"></p>
 <ul>
 <li>分解模式<ul>
 <li>按业务能力分解</li>
@@ -338,7 +340,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="写在抄袭之前"><a href="#写在抄袭之前" class="headerlink" title="写在抄袭之前"></a>写在抄袭之前</h3><p><strong>本文抄自</strong><br><a href="https://microservices.io/articles/applying.html" target="_blank" rel="noopener">microservice</a></p>
+        <h3 id="写在抄袭之前"><a href="#写在抄袭之前" class="headerlink" title="写在抄袭之前"></a>写在抄袭之前</h3><p><strong>本文抄自</strong><br><a href="https://microservices.io/articles/applying.html" target="_blank" rel="noopener">https://microservices.io/articles/applying.html</a></p>
 <p>必须做出的第一个决定是使用单体架构模式还是微服务架构模式。 如果选择微服务架构模式，则必须选择许多其他模式来处理该决策的后果。</p>
 <h2 id="单体架构模式"><a href="#单体架构模式" class="headerlink" title="单体架构模式"></a>单体架构模式</h2><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>我们正在开发一个服务器端企业应用程序。它必须支持各种不同的客户端，包括桌面浏览器、移动浏览器和移动应用程序。该应用程序还可能会公开API给第三方程序，还可能通过Web服务或消息代理与其他应用程序集成。应用程序通过执行业务逻辑来处理请求（HTTP请求和消息），访问数据库，与其他系统交换消息，并返回HTML/JSON/XML响应。在这个应用中，不同的功能区域都对应着不同的逻辑组件。</p>
 <h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>采用什么架构？</p>
@@ -357,7 +359,7 @@
 </ul>
 <h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><p>假设我们正在构建一个电子商务应用程序，该应用程序接收来自客户的订单，验证库存和可用信用，并运送它们。该应用程序包含以下几个组件：前端UI，负责用户界面；后端服务，例如信用检查，库存维护，装运订单等。          </p>
 <p>该应用程序部署为单体架构应用程序。例如，运行在Web容器（如Tomcat）war文件的java网站项目。可以在负载均衡器后面运行应用程序的多个实例，以便扩展和提高可用性。</p>
-<p><img src="/2018/11/15/Monolithic-Architecture/dantijiagou.jpg" alt="单体架构"></p>
+<p><img src="/2018/11/15/Monolithic-Architecture/microservice/dantijiagou.jpg" alt="单体架构"></p>
 <h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><h4 id="优势："><a href="#优势：" class="headerlink" title="优势："></a>优势：</h4><ul>
 <li>易于开发 - 当前开发工具和IDE的目标是支持单片应用程序的开发</li>
 <li>易于部署 - 只需在适当的运行时上部署WAR文件（或目录层次结构）</li>
